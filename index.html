@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduarda Schmit — Psicóloga Infanto-Juvenil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --warm-white: #FBF7EF;
+    --gold: #E8C66A;
+    --gold-deep: #C9A94A;
+    --terracotta: #C0714A;
+    --brown: #5C3D2E;
+    --brown-light: #8B6252;
+    --sage: #7A8C6E;
+    --sage-light: #A8B89A;
+    --text-dark: #2E1F14;
+    --text-mid: #5C4033;
+    --text-light: #9B7B6A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(251, 247, 239, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(232, 198, 106, 0.25);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--brown);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 5rem 6rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--brown);
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--brown-light);
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--text-mid);
+    max-width: 420px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--brown);
+    color: var(--cream);
+    padding: 0.95rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.85s forwards;
+  }
+
+  .hero-cta:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta svg { transition: transform 0.3s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-right {
+    position: relative;
+    background: var(--gold);
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: 'SOBRE\AMIM';
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 12vw;
+    color: rgba(255,255,255,0.18);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: pre;
+    line-height: 0.9;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-photo-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    z-index: 2;
+    opacity: 0;
+    animation: risePhoto 1.1s 0.6s forwards;
+  }
+
+  .hero-photo-wrap img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    filter: sepia(5%);
+  }
+
+  .hero-tag {
+    position: absolute;
+    bottom: 2.5rem;
+    right: -2rem;
+    z-index: 3;
+    background: var(--cream);
+    padding: 0.75rem 2rem 0.75rem 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--brown);
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
+    border-left: 3px solid var(--terracotta);
+    opacity: 0;
+    animation: fadeLeft 0.9s 1.1s forwards;
+  }
+
+  .hero-deco {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 8rem;
+    color: rgba(255,255,255,0.12);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  /* ─── STRIP ─── */
+  .strip {
+    background: var(--brown);
+    color: var(--gold);
+    padding: 1rem 4rem;
+    display: flex;
+    gap: 4rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .strip-inner {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 18s linear infinite;
+  }
+
+  .strip-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .strip-item span { margin-right: 4rem; color: var(--terracotta); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    padding: 8rem 6rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--brown);
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--terracotta); }
+
+  /* ─── SOBRE ─── */
+  .sobre {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .sobre-text p {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-mid);
+    margin-bottom: 1.4rem;
+  }
+
+  .sobre-text p:first-of-type::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8rem;
+    font-weight: 600;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.15em;
+    margin-top: 0.05em;
+    color: var(--gold-deep);
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .sobre-card {
+    background: var(--cream);
+    padding: 3rem;
+    border-left: 4px solid var(--gold);
+    position: relative;
+  }
+
+  .sobre-card::after {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -1rem;
+    right: 1.5rem;
+    line-height: 1;
+  }
+
+  .sobre-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--brown);
+    margin-bottom: 1.2rem;
+  }
+
+  .sobre-quote-author {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--text-light);
+    text-transform: uppercase;
+  }
+
+  .sobre-floater {
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    width: 5rem;
+    height: 5rem;
+    background: var(--terracotta);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  /* ─── TRAJETÓRIA ─── */
+  .trajetoria {
+    background: var(--cream);
+  }
+
+  .traj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .traj-card {
+    background: var(--warm-white);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: default;
+  }
+
+  .traj-card:hover { transform: translateY(-6px); }
+
+  .traj-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .traj-card:hover::before { transform: scaleX(1); }
+
+  .traj-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .traj-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .traj-desc {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+
+  .traj-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    border: 1px solid var(--terracotta);
+    padding: 0.3rem 0.75rem;
+  }
+
+  /* ─── POR QUE ─── */
+  .porque {
+    background: var(--brown);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .porque::before {
+    content: '?';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40vw;
+    font-weight: 700;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    right: -5vw;
+    top: -5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .porque .section-title { color: var(--gold); }
+  .porque .section-label { color: var(--sage-light); }
+  .porque .section-label::before { background: var(--sage-light); }
+
+  .porque-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .porque-lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--gold);
+    border-left: 3px solid var(--terracotta);
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .porque-text p {
+    font-size: 0.92rem;
+    line-height: 2;
+    color: rgba(245,239,224,0.75);
+    margin-bottom: 1.2rem;
+  }
+
+  .porque-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,198,106,0.2);
+    padding: 2rem 2rem 1.8rem;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .pillar:hover {
+    border-color: rgba(232,198,106,0.5);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .pillar-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-text {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: rgba(245,239,224,0.65);
+  }
+
+  /* ─── COMPROMISSO ─── */
+  .compromisso {
+    background: var(--warm-white);
+  }
+
+  .comprm-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .comprm-wrap .section-label {
+    justify-content: center;
+  }
+
+  .comprm-wrap .section-label::before { display: none; }
+
+  .comprm-wrap .section-title {
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+  }
+
+  .comprm-body {
+    font-size: 1.05rem;
+    line-height: 2;
+    color: var(--text-mid);
+    margin-bottom: 3rem;
+  }
+
+  .comprm-values {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .comprm-val {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+  }
+
+  .comprm-val::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold-deep);
+    border-radius: 50%;
+  }
+
+  /* ─── CONTATO ─── */
+  .contato {
+    background: var(--gold);
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .contato-left .section-title { color: var(--brown); margin-bottom: 1.2rem; }
+  .contato-left p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--brown);
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .contato-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--brown);
+    color: var(--cream);
+    padding: 1.1rem 2.5rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .contato-btn:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .contato-right {
+    background: rgba(255,255,255,0.3);
+    padding: 3rem;
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+
+  .contato-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contato-info-item:last-child { margin-bottom: 0; }
+
+  .ci-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--brown);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .ci-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown);
+    opacity: 0.6;
+    margin-bottom: 0.2rem;
+  }
+
+  .ci-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--brown);
+    font-weight: 600;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(245,239,224,0.4);
+    padding: 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+
+  footer span { color: var(--gold); opacity: 0.7; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes risePhoto {
+    from { opacity: 0; transform: translateX(-50%) translateY(40px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(20px); right: -2rem; }
+    to { opacity: 1; transform: translateX(0); right: 2rem; }
+  }
+
+  /* Scroll-reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    .hero-right { height: 60vw; }
+    .section { padding: 5rem 2rem; }
+    .sobre { grid-template-columns: 1fr; gap: 3rem; }
+    .traj-grid { grid-template-columns: 1fr; }
+    .porque-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .contato { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Eduarda Schmit — Psicóloga</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#trajetoria">Trajetória</a></li>
+    <li><a href="#abordagem">Abordagem</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Psicóloga CRP — Londrina, PR</p>
+    <h1 class="hero-name">Eduarda<br><em>Schmit</em></h1>
+    <p class="hero-subtitle">Psicologia Infanto-Juvenil · UEL · CRP 08</p>
+    <p class="hero-desc">
+      Escuta qualificada para crianças e adolescentes, construída com cuidado, presença e compromisso com cada história que chega até mim.
+    </p>
+    <a href="#contato" class="hero-cta">
+      Agendar conversa
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-deco">🌷</div>
+    <div class="hero-tag">Prazer, Duda 🌷</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span class="strip-item">Escuta Qualificada <span>✦</span></span>
+    <span class="strip-item">Psicologia Infantil <span>✦</span></span>
+    <span class="strip-item">Análise do Comportamento <span>✦</span></span>
+    <span class="strip-item">Direitos da Infância <span>✦</span></span>
+    <span class="strip-item">Adolescência <span>✦</span></span>
+    <span class="strip-item">Família & Vínculos <span>✦</span></span>
+    <span class="strip-item">Escuta Qualificada <span>✦</span></span>
+    <span class="strip-item">Psicologia Infantil <span>✦</span></span>
+    <span class="strip-item">Análise do Comportamento <span>✦</span></span>
+    <span class="strip-item">Direitos da Infância <span>✦</span></span>
+    <span class="strip-item">Adolescência <span>✦</span></span>
+    <span class="strip-item">Família & Vínculos <span>✦</span></span>
+  </div>
+</div>
+
+<!-- SOBRE MIM -->
+<section id="sobre" class="section sobre">
+  <div class="sobre-text reveal">
+    <div class="section-label">Sobre mim</div>
+    <h2 class="section-title">Uma trajetória<br>construída com <em>afeto</em></h2>
+    <p>
+      Sou Psicóloga pela Universidade Estadual de Londrina, e minha trajetória na Psicologia foi, aos poucos, me mostrando caminhos e despertando em mim um olhar cada vez mais atento e curioso para as diferentes realidades, os encontros, as relações e as formas de compreender o comportamento.
+    </p>
+    <p>
+      Com o estágio na creche, com o carinho e a espontaneidade com que as crianças nos recebiam, era impossível não me afetar. A cada recurso lúdico, a cada brincadeira, a cada mudança comportamental — que, no fundo, sabíamos ser resultado do nosso trabalho — fui percebendo que esse seria o meu público.
+    </p>
+    <p>
+      Agora, sigo construindo esse caminho com cuidado, escuta e compromisso com cada história que vir até mim. 🌷⭐️
+    </p>
+  </div>
+  <div class="sobre-visual reveal reveal-delay-2">
+    <div class="sobre-card">
+      <div class="sobre-floater">🌿</div>
+      <p class="sobre-quote">
+        "Oferecer um espaço de escuta na infância e adolescência não é apenas um cuidado no presente — é também uma possibilidade de transformação no futuro."
+      </p>
+      <p class="sobre-quote-author">— Eduarda Schmit</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section id="trajetoria" class="section trajetoria">
+  <div class="reveal">
+    <div class="section-label">Experiências</div>
+    <h2 class="section-title">Onde essa história<br><em>tomou forma</em></h2>
+  </div>
+  <div class="traj-grid">
+    <div class="traj-card reveal reveal-delay-1">
+      <div class="traj-number">01</div>
+      <h3 class="traj-title">Clínica Psicológica da UEL</h3>
+      <p class="traj-desc">Atuação direta no atendimento clínico com crianças e adolescentes, desenvolvendo escuta guiada pela Análise do Comportamento e considerando sempre o contexto social e história de vida de cada sujeito.</p>
+      <span class="traj-tag">Clínica · Londrina</span>
+    </div>
+    <div class="traj-card reveal reveal-delay-2">
+      <div class="traj-number">02</div>
+      <h3 class="traj-title">Centro de Educação Infantil</h3>
+      <p class="traj-desc">Estágio em creche que foi decisivo na escolha pelo público infanto-juvenil. O carinho e a espontaneidade das crianças, aliados às mudanças comportamentais observadas, confirmaram esse caminho.</p>
+      <span class="traj-tag">Educação Infantil</span>
+    </div>
+    <div class="traj-card reveal reveal-delay-3">
+      <div class="traj-number">03</div>
+      <h3 class="traj-title">Defensoria Pública — Vara da Infância</h3>
+      <p class="traj-desc">Estágio no Tribunal de Justiça, na Vara da Infância e Adolescência, aproximando a prática psicológica das discussões sobre proteção e direitos — e das histórias reais que atravessam tantas vidas.</p>
+      <span class="traj-tag">Direito · Proteção</span>
+    </div>
+    <div class="traj-card reveal reveal-delay-1">
+      <div class="traj-number">04</div>
+      <h3 class="traj-title">Projeto Neddij</h3>
+      <p class="traj-desc">Participação no Núcleo de Estudos e Defesa da Infância e Juventude, ampliando o olhar para políticas públicas, garantia de direitos e os atravessamentos sociais que marcam a infância.</p>
+      <span class="traj-tag">Extensão Universitária</span>
+    </div>
+    <div class="traj-card reveal reveal-delay-2">
+      <div class="traj-number">05</div>
+      <h3 class="traj-title">Workshop "Compreendendo o Comportamento"</h3>
+      <p class="traj-desc">Participação ativa em formações sobre Análise do Comportamento aplicada ao contexto infanto-juvenil, aprofundando os fundamentos teóricos que sustentam a prática clínica.</p>
+      <span class="traj-tag">Formação Continuada</span>
+    </div>
+    <div class="traj-card reveal reveal-delay-3">
+      <div class="traj-number">06</div>
+      <h3 class="traj-title">Formação — UEL 2021–2026</h3>
+      <p class="traj-desc">Graduação em Psicologia pela Universidade Estadual de Londrina, uma das principais universidades públicas do Paraná, com formação sólida em teoria, ética e prática psicológica.</p>
+      <span class="traj-tag">UEL · Londrina-PR</span>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE PSICOLOGIA -->
+<section id="abordagem" class="section porque">
+  <div class="porque-layout">
+    <div class="reveal">
+      <div class="section-label">Abordagem</div>
+      <h2 class="section-title">Por que a<br>Psicologia<br><em>Infantil?</em></h2>
+      <p class="porque-lead">
+        "Crianças sentem. Mas nem sempre sabem como demonstrar. E na maioria das vezes, se expressam como conseguem."
+      </p>
+      <div class="porque-text">
+        <p>Comportamentos não surgem do nada — eles são construídos ao longo da história de cada indivíduo. Desde cedo, aprendemos como o mundo ao nosso redor nos responde diante de nossas ações: se somos ignorados, acolhidos, punidos, silenciados ou cuidados.</p>
+        <p>Nesse processo, são moldados nossos repertórios e construídos nossos padrões de comportamento. Por isso, a escuta na infância e adolescência tem um potencial transformador que vai muito além do presente.</p>
+      </div>
+    </div>
+    <div class="porque-pillars reveal reveal-delay-2">
+      <div class="pillar">
+        <div class="pillar-icon">🧩</div>
+        <h3 class="pillar-title">Escuta Singular</h3>
+        <p class="pillar-text">Cada criança é compreendida em sua singularidade, levando em conta sua história, seu contexto familiar e social, e seus próprios modos de se expressar.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌱</div>
+        <h3 class="pillar-title">Análise do Comportamento</h3>
+        <p class="pillar-text">A escuta é guiada pela Análise do Comportamento, considerando sempre o contexto social e a história de vida — sem generalizar, sem rotular.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">💛</div>
+        <h3 class="pillar-title">Família como Parceira</h3>
+        <p class="pillar-text">O trabalho é construído junto com as crianças, adolescentes e suas famílias — porque novos caminhos se abrem quando há suporte, vínculo e confiança.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🔒</div>
+        <h3 class="pillar-title">Direitos & Proteção</h3>
+        <p class="pillar-text">Uma prática fundamentada na proteção da infância e nos direitos da criança e do adolescente, construída a partir de anos de contato com esse campo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPROMISSO -->
+<section class="section compromisso">
+  <div class="comprm-wrap reveal">
+    <div class="section-label">Compromisso</div>
+    <h2 class="section-title">Com cuidado,<br>escuta e <em>presença</em></h2>
+    <p class="comprm-body">
+      Sigo construindo esse caminho com atenção às histórias que chegam até mim — acreditando que cada encontro terapêutico é uma oportunidade de construir, junto, novos caminhos possíveis.
+    </p>
+    <div class="comprm-values">
+      <span class="comprm-val">Escuta ativa</span>
+      <span class="comprm-val">Ética e sigilo</span>
+      <span class="comprm-val">Vínculo terapêutico</span>
+      <span class="comprm-val">Ludicidade</span>
+      <span class="comprm-val">Cuidado com a família</span>
+      <span class="comprm-val">Presença genuína</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="contato">
+  <div class="contato-left reveal">
+    <div class="section-label" style="color:var(--brown);--terracotta:var(--brown)">Vamos conversar</div>
+    <h2 class="section-title" style="color:var(--brown)">Agende sua <em style="color:var(--terracotta)">consulta</em></h2>
+    <p>Se você está buscando acompanhamento psicológico para seu filho, filha ou adolescente, estou aqui para escutar e construir esse caminho junto com a sua família.</p>
+    <a href="https://wa.me/5543999999999" class="contato-btn" target="_blank">
+      💬 Falar no WhatsApp
+    </a>
+  </div>
+  <div class="contato-right reveal reveal-delay-2">
+    <div class="contato-info-item">
+      <div class="ci-icon">📍</div>
+      <div>
+        <p class="ci-label">Localização</p>
+        <p class="ci-value">Londrina, Paraná</p>
+      </div>
+    </div>
+    <div class="contato-info-item">
+      <div class="ci-icon">🎓</div>
+      <div>
+        <p class="ci-label">Formação</p>
+        <p class="ci-value">Psicóloga pela UEL (2021–2026)</p>
+      </div>
+    </div>
+    <div class="contato-info-item">
+      <div class="ci-icon">💼</div>
+      <div>
+        <p class="ci-label">Especialidade</p>
+        <p class="ci-value">Psicologia Infanto-Juvenil</p>
+      </div>
+    </div>
+    <div class="contato-info-item">
+      <div class="ci-icon">📲</div>
+      <div>
+        <p class="ci-label">Redes sociais</p>
+        <p class="ci-value">@eduarda.psicologa</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Eduarda Schmit — Psicóloga</span>
+  <span>Londrina, PR · CRP 08 · 2026</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
