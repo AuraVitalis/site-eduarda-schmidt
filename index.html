@@ -1,1374 +1,437 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eduarda Schmidt | Psicóloga Clínica — Psicoterapia com Acolhimento e Ciência</title>
-<meta name="description" content="Psicoterapia individual, online e presencial. Um espaço seguro para você entender suas emoções, sair do piloto automático e construir uma vida com mais leveza.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --sage: #8FAF8F;
-    --sage-light: #C4D5C4;
-    --sage-dark: #5A7A5A;
-    --ivory: #FAF6EF;
-    --ivory-dark: #F0E9DE;
-    --charcoal: #2C2C2C;
-    --charcoal-light: #555555;
-    --terracotta: #C4845A;
-    --terracotta-light: #E8C5AC;
-    --white: #FFFFFF;
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'DM Sans', sans-serif;
-    --radius: 12px;
-    --radius-lg: 24px;
-    --shadow: 0 4px 30px rgba(44, 44, 44, 0.08);
-    --shadow-hover: 0 12px 50px rgba(44, 44, 44, 0.15);
-    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicóloga Infantil e Adolescente em Londrina | Eduarda Schmidt</title>
+    <meta name="description" content="Atendimento psicológico especializado em crianças e adolescentes em Londrina. Análise do comportamento, escuta acolhedora e orientação a pais.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN para arquivo único) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bege: '#F8F6F0',
+                        musgo: {
+                            DEFAULT: '#3F5C4D',
+                            hover: '#2D4438'
+                        },
+                        marrom: {
+                            DEFAULT: '#5A4634',
+                            light: '#8B735F'
+                        },
+                        rosa: '#F4E1E1',
+                        amarelo: '#FDF0D5'
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'organic': '60% 40% 30% 70% / 60% 30% 70% 40%',
+                        'organic-2': '40% 60% 70% 30% / 40% 50% 60% 50%'
+                    }
+                }
+            }
+        }
+    </script>
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    background: var(--ivory);
-    color: var(--charcoal);
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ─── UTILITY ─── */
-  .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
-  .section { padding: 6rem 0; }
-  .section-alt { background: var(--white); }
-  .section-dark { background: var(--charcoal); color: var(--ivory); }
-  .section-sage { background: var(--sage); color: var(--white); }
-
-  .label {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-  .label-light { color: var(--terracotta-light); }
-
-  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; }
-  h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); }
-  h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
-  h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
-  p { font-size: 1.05rem; line-height: 1.75; }
-
-  a { color: inherit; text-decoration: none; }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    cursor: pointer;
-    transition: var(--transition);
-    border: 2px solid transparent;
-    text-decoration: none;
-  }
-  .btn-primary {
-    background: var(--sage-dark);
-    color: var(--white);
-    border-color: var(--sage-dark);
-  }
-  .btn-primary:hover {
-    background: var(--charcoal);
-    border-color: var(--charcoal);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--sage-dark);
-    border-color: var(--sage-dark);
-  }
-  .btn-secondary:hover {
-    background: var(--sage-dark);
-    color: var(--white);
-    transform: translateY(-2px);
-  }
-  .btn-white {
-    background: var(--white);
-    color: var(--sage-dark);
-    border-color: var(--white);
-  }
-  .btn-white:hover {
-    background: var(--ivory);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-  }
-  .btn-wa {
-    background: #25D366;
-    color: var(--white);
-    border-color: #25D366;
-    font-size: 0.95rem;
-    padding: 1rem 2.2rem;
-  }
-  .btn-wa:hover {
-    background: #1DA851;
-    border-color: #1DA851;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
-  }
-  .btn svg { width: 18px; height: 18px; }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem 0;
-    transition: var(--transition);
-    background: transparent;
-  }
-  nav.scrolled {
-    background: rgba(250, 246, 239, 0.96);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 1px 30px rgba(44, 44, 44, 0.07);
-    padding: 0.9rem 0;
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    letter-spacing: 0.02em;
-  }
-  .nav-logo span { color: var(--sage-dark); }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--charcoal-light);
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--sage-dark); }
-  .nav-cta { margin-left: 1rem; }
-
-  /* hamburger */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-    z-index: 101;
-  }
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--charcoal);
-    transition: var(--transition);
-    border-radius: 2px;
-  }
-  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.active span:nth-child(2) { opacity: 0; }
-  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: var(--ivory);
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 55%;
-    height: 120%;
-    background: radial-gradient(ellipse at center, var(--sage-light) 0%, transparent 70%);
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .hero-content {
-    padding: 8rem 2rem 4rem 4rem;
-    max-width: 600px;
-    animation: fadeUp 0.9s ease both;
-  }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--sage-light);
-    color: var(--sage-dark);
-    padding: 0.35rem 1rem;
-    border-radius: 50px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--sage-dark);
-    flex-shrink: 0;
-  }
-  .hero h1 {
-    margin-bottom: 1.5rem;
-    color: var(--charcoal);
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--sage-dark);
-  }
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--charcoal-light);
-    margin-bottom: 2.5rem;
-    max-width: 480px;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .hero-trust {
-    margin-top: 3rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .trust-avatars {
-    display: flex;
-  }
-  .trust-avatars span {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--sage-light);
-    border: 2px solid var(--ivory);
-    margin-left: -8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: var(--sage-dark);
-    font-weight: 600;
-  }
-  .trust-avatars span:first-child { margin-left: 0; }
-  .trust-text {
-    font-size: 0.82rem;
-    color: var(--charcoal-light);
-  }
-  .trust-text strong { color: var(--charcoal); }
-
-  .hero-image-wrap {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    animation: fadeIn 1.1s ease both 0.2s;
-  }
-  .hero-img-bg {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 90%;
-    height: 88%;
-    background: linear-gradient(135deg, var(--sage-light) 0%, var(--ivory-dark) 100%);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .hero-img {
-    position: relative;
-    z-index: 2;
-    width: 85%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    object-position: top;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .hero-badge {
-    position: absolute;
-    bottom: 2.5rem;
-    left: -1.5rem;
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 1rem 1.25rem;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    z-index: 5;
-    animation: floatBadge 4s ease-in-out infinite;
-  }
-  .hero-badge-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--sage-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .hero-badge-icon svg { width: 20px; height: 20px; color: var(--sage-dark); }
-  .hero-badge-text { font-size: 0.78rem; }
-  .hero-badge-text strong { display: block; font-weight: 600; color: var(--charcoal); font-size: 0.88rem; }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    opacity: 0.4;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-  }
-  .scroll-hint::after {
-    content: '';
-    width: 1px;
-    height: 40px;
-    background: var(--charcoal);
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-
-  /* ─── PAIN CARDS ─── */
-  .pain-section { padding: 5rem 0; background: var(--white); }
-  .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .pain-card {
-    background: var(--ivory);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem 2rem;
-    border-left: 3px solid var(--sage-light);
-    transition: var(--transition);
-  }
-  .pain-card:hover {
-    border-left-color: var(--sage-dark);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-  }
-  .pain-quote {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-style: italic;
-    color: var(--charcoal);
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-  }
-  .pain-response {
-    font-size: 0.95rem;
-    color: var(--sage-dark);
-    font-weight: 500;
-  }
-
-  /* ─── ABOUT ─── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .about-img-wrap { 
-    position: relative; 
-    z-index: 1;
-  }
-  .about-img-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 60%;
-    height: 60%;
-    border: 2px solid var(--sage-light);
-    border-radius: var(--radius-lg);
-    z-index: -1;
-  }
-  .about-img-bg {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    display: block;
-  }
-  .about-img-decor {
-    position: absolute;
-    top: -1.5rem;
-    right: -1.5rem;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--terracotta-light);
-    opacity: 0.7;
-    z-index: 2;
-  }
-  .crp-badge {
-    position: absolute;
-    bottom: -1.5rem;
-    left: -1.5rem;
-    background: var(--charcoal);
-    color: var(--white);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius);
-    font-size: 0.85rem;
-    z-index: 3;
-    box-shadow: var(--shadow);
-  }
-  .crp-badge span { display: block; font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; color: var(--sage-light); }
-  .about-content .label { margin-bottom: 0.75rem; }
-  .about-content h2 { margin-bottom: 1.5rem; }
-  .about-content p { color: var(--charcoal-light); margin-bottom: 1.25rem; }
-  .about-values {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin: 2rem 0;
-  }
-  .value-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-  .value-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--sage-dark);
-    flex-shrink: 0;
-  }
-
-  /* ─── SERVICES ─── */
-  .services-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .service-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem 2rem;
-    position: relative;
-    transition: var(--transition);
-    overflow: hidden;
-    border: 1px solid var(--ivory-dark);
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--sage-light);
-    transition: var(--transition);
-  }
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-    border-color: transparent;
-  }
-  .service-card:hover::before { background: var(--sage-dark); }
-  .service-icon {
-    width: 52px;
-    height: 52px;
-    background: var(--ivory);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  .service-icon svg { width: 24px; height: 24px; color: var(--sage-dark); }
-  .service-card h3 { margin-bottom: 0.75rem; font-size: 1.6rem; }
-  .service-card p { font-size: 0.95rem; color: var(--charcoal-light); margin-bottom: 1.5rem; }
-  .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .tag {
-    background: var(--ivory);
-    color: var(--sage-dark);
-    padding: 0.3rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-  .service-link {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--sage-dark);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: gap 0.2s;
-  }
-  .service-link:hover { gap: 0.7rem; }
-
-  /* ─── PROCESS ─── */
-  .process-section { background: var(--charcoal); color: var(--ivory); padding: 6rem 0; }
-  .process-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
-  .process-header .label { color: var(--terracotta-light); }
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    position: relative;
-  }
-  .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 2.5rem;
-    left: calc(12.5% + 1rem);
-    right: calc(12.5% + 1rem);
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-  }
-  .step {
-    text-align: center;
-    position: relative;
-  }
-  .step-num {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--sage-dark);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    margin: 0 auto 1.25rem;
-    position: relative;
-    z-index: 2;
-  }
-  .step h4 {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    color: var(--white);
-  }
-  .step p { font-size: 0.9rem; color: rgba(250, 246, 239, 0.6); }
-
-  /* ─── TESTIMONIALS ─── */
-  .testimonials-section { padding: 6rem 0; background: var(--ivory); }
-  .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .testimonial-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    transition: var(--transition);
-    border: 1px solid transparent;
-  }
-  .testimonial-card:hover {
-    border-color: var(--sage-light);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-  }
-  .testimonial-card:nth-child(2) {
-    background: var(--sage-dark);
-    color: var(--white);
-  }
-  .testimonial-card:nth-child(2) .testimonial-author { color: var(--sage-light); }
-  .stars { color: var(--terracotta); font-size: 0.95rem; margin-bottom: 1rem; }
-  .testimonial-text {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-style: italic;
-    line-height: 1.5;
-    flex: 1;
-    margin-bottom: 1.5rem;
-  }
-  .testimonial-author {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--charcoal-light);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .author-dot {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--sage-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--sage-dark);
-  }
-
-  /* ─── FAQ ─── */
-  .faq-section { padding: 6rem 0; background: var(--white); }
-  .faq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
-  .faq-sidebar h2 { margin-bottom: 1.25rem; }
-  .faq-sidebar p { color: var(--charcoal-light); margin-bottom: 2rem; }
-  .faq-list { display: flex; flex-direction: column; gap: 0; }
-  .faq-item {
-    border-bottom: 1px solid var(--ivory-dark);
-    overflow: hidden;
-  }
-  .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 1.25rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    text-align: left;
-    transition: color 0.2s;
-  }
-  .faq-question:hover { color: var(--sage-dark); }
-  .faq-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid var(--sage-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: var(--transition);
-    font-size: 1.2rem;
-    color: var(--sage-dark);
-  }
-  .faq-item.open .faq-icon {
-    background: var(--sage-dark);
-    border-color: var(--sage-dark);
-    color: var(--white);
-    transform: rotate(45deg);
-  }
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    font-size: 0.95rem;
-    color: var(--charcoal-light);
-    line-height: 1.7;
-  }
-  .faq-item.open .faq-answer {
-    max-height: 300px;
-    padding-bottom: 1.5rem;
-  }
-
-  /* ─── CONTACT ─── */
-  .contact-section { padding: 6rem 0; background: var(--ivory-dark); }
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .contact-info h2 { margin-bottom: 1rem; }
-  .contact-info p { color: var(--charcoal-light); margin-bottom: 2rem; }
-  .contact-options { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-option {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1.5rem;
-    border: 1.5px solid var(--white);
-    background: var(--white);
-    border-radius: var(--radius);
-    transition: var(--transition);
-    cursor: pointer;
-  }
-  .contact-option:hover { border-color: var(--sage-dark); box-shadow: var(--shadow); }
-  .contact-option-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius);
-    background: var(--ivory);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .contact-option-icon svg { width: 24px; height: 24px; color: var(--sage-dark); }
-  .contact-option-text strong { display: block; font-size: 1rem; margin-bottom: 0.2rem; color: var(--charcoal); }
-  .contact-option-text span { font-size: 0.9rem; color: var(--charcoal-light); }
-  
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--charcoal);
-    color: var(--ivory);
-    padding: 5rem 0 2rem;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-  }
-  .footer-brand p {
-    font-size: 0.95rem;
-    color: rgba(250,246,239,0.55);
-    margin-top: 1rem;
-    max-width: 280px;
-    line-height: 1.65;
-  }
-  .footer-logo {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: var(--ivory);
-    margin-bottom: 0;
-  }
-  .footer-logo span { color: var(--sage-light); }
-  .footer-col h5 {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(250,246,239,0.4);
-    margin-bottom: 1.5rem;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .footer-col ul li a {
-    font-size: 0.95rem;
-    color: rgba(250,246,239,0.7);
-    transition: color 0.2s;
-  }
-  .footer-col ul li a:hover { color: var(--sage-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    color: rgba(250,246,239,0.4);
-  }
-
-  /* ─── FLOATING CTA ─── */
-  .float-wa {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 200;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    transition: var(--transition);
-    animation: pulseWa 3s ease-in-out infinite;
-  }
-  .float-wa:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
-  }
-  .float-wa svg { width: 32px; height: 32px; color: white; }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes floatBadge {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes scrollLine {
-    0% { transform: scaleY(0); transform-origin: top; }
-    50% { transform: scaleY(1); transform-origin: top; }
-    51% { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-  }
-  @keyframes pulseWa {
-    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-    50% { box-shadow: 0 4px 35px rgba(37, 211, 102, 0.7); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── MOBILE NAV OVERLAY ─── */
-  .mobile-nav {
-    display: flex;
-    position: fixed;
-    inset: 0;
-    background: rgba(250, 246, 239, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 99;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s ease;
-    transform: translateY(-20px);
-  }
-  .mobile-nav.open {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0);
-  }
-  .mobile-nav a {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--charcoal);
-    transition: color 0.2s;
-  }
-  .mobile-nav a:hover { color: var(--sage-dark); }
-  .mobile-nav .btn { font-family: var(--font-body); font-size: 1.1rem; padding: 1rem 2.5rem; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 5rem; }
-    .hero-content { padding: 4rem 2rem 3rem; max-width: 100%; text-align: center; }
-    .hero-actions { justify-content: center; }
-    .hero-trust { justify-content: center; flex-direction: column; gap: 1rem; }
-    .hero-image-wrap { height: 60vw; min-height: 400px; }
-    .pain-grid { grid-template-columns: 1fr 1fr; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-img-wrap { max-width: 450px; margin: 0 auto; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 3rem 1.5rem; }
-    .process-steps::before { display: none; }
-    .testimonials-grid { grid-template-columns: 1fr 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-  }
-
-  @media (max-width: 768px) {
-    .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    .pain-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    h1 { font-size: 2.8rem; }
-    h2 { font-size: 2.2rem; }
-    .section { padding: 4rem 0; }
-  }
-</style>
+    <style>
+        /* Estilos adicionais sutis */
+        body {
+            background-color: #F8F6F0;
+            color: #5A4634;
+        }
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 3s ease-in-out;
+        }
+        .organic-shape:hover {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 40px -10px rgba(90, 70, 52, 0.08);
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
-<!-- NAV -->
-<nav id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Eduarda <span>Schmidt</span></a>
-    <ul class="nav-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#depoimentos">Depoimentos</a></li>
-      <li><a href="#faq">Perguntas</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-    <a href="#contato" class="btn btn-primary nav-cta">Agendar consulta</a>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
-  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
-  <a href="#servicos" onclick="closeMobileNav()">Serviços</a>
-  <a href="#depoimentos" onclick="closeMobileNav()">Depoimentos</a>
-  <a href="#faq" onclick="closeMobileNav()">Perguntas</a>
-  <a href="#contato" onclick="closeMobileNav()">Contato</a>
-  <a href="#contato" onclick="closeMobileNav()" class="btn btn-primary" style="margin-top:1.5rem;">Agendar consulta</a>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <span class="hero-eyebrow">Psicologia Clínica</span>
-    <h1>Um espaço seguro para <em>cuidar de você</em>.</h1>
-    <p class="hero-sub">Psicoterapia baseada em evidências. Ajudo você a entender suas emoções, sair do piloto automático e construir uma vida com mais sentido e leveza.</p>
-    
-    <div class="hero-actions">
-      <a href="#contato" class="btn btn-primary">Começar meu processo</a>
-      <a href="#sobre" class="btn btn-secondary">Conhecer a Eduarda</a>
-    </div>
-
-    <div class="hero-trust">
-      <div class="trust-avatars">
-        <span>+</span>
-        <span>✓</span>
-        <span>♥</span>
-      </div>
-      <p class="trust-text"><strong>Atendimento Especializado</strong><br>Online para todo o mundo.</p>
-    </div>
-  </div>
-
-  <div class="hero-image-wrap">
-    <div class="hero-img-bg"></div>
-    <!-- FOTO INSERIDA AQUI -->
-    <img src="foto-perfil2.jpg" alt="Eduarda Schmidt - Psicóloga" class="hero-img">
-    
-    <div class="hero-badge">
-      <div class="hero-badge-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-      </div>
-      <div class="hero-badge-text">
-        <strong>Atendimento</strong>
-        Online e Presencial
-      </div>
-    </div>
-  </div>
-  
-  <div class="scroll-hint">Rolar<br></div>
-</section>
-
-<!-- PAIN SECTION -->
-<section class="section pain-section">
-  <div class="container reveal">
-    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-      <span class="label">Identificação</span>
-      <h2>Você se sente assim ultimamente?</h2>
-    </div>
-    
-    <div class="pain-grid">
-      <div class="pain-card">
-        <p class="pain-quote">"Sinto que estou sempre no piloto automático, apenas sobrevivendo à rotina."</p>
-        <p class="pain-response">Na terapia, vamos pausar e reconectar você com as suas reais necessidades e desejos.</p>
-      </div>
-      <div class="pain-card">
-        <p class="pain-quote">"A ansiedade parece controlar todas as minhas escolhas e o meu futuro."</p>
-        <p class="pain-response">Aprenda ferramentas práticas para regular suas emoções e recuperar a autonomia da sua vida.</p>
-      </div>
-      <div class="pain-card">
-        <p class="pain-quote">"Meus relacionamentos são constantes fontes de exaustão e angústia."</p>
-        <p class="pain-response">Desenvolva autoconhecimento para estabelecer limites e criar vínculos mais saudáveis e seguros.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section id="sobre" class="section section-alt">
-  <div class="container reveal">
-    <div class="about-grid">
-      <div class="about-img-wrap">
-        <div class="about-img-decor"></div>
-        <!-- FOTO INSERIDA AQUI -->
-        <img src="foto-perfil2.jpg" alt="Eduarda Schmidt" class="about-img-bg">
-        <div class="crp-badge">
-          Psicóloga Clínica
-          <span>CRP 08/XXXXX</span>
-        </div>
-      </div>
-      
-      <div class="about-content">
-        <span class="label">Quem sou eu</span>
-        <h2>Muito prazer, sou a Eduarda.</h2>
-        <p>Sou psicóloga clínica dedicada a oferecer um espaço de escuta ativa, sem julgamentos e embasado cientificamente. Meu objetivo é te ajudar a navegar pelas complexidades da mente humana com mais clareza.</p>
-        <p>Acredito que a psicoterapia não é apenas para tratar o sofrimento, mas também uma ferramenta poderosa de expansão, autoconhecimento e desenvolvimento de uma vida que valha a pena ser vivida.</p>
-        
-        <div class="about-values">
-          <div class="value-item"><div class="value-dot"></div> Abordagem baseada em evidências científicas.</div>
-          <div class="value-item"><div class="value-dot"></div> Ambiente seguro, ético e totalmente sigiloso.</div>
-          <div class="value-item"><div class="value-dot"></div> Foco na sua autonomia e inteligência emocional.</div>
-        </div>
-        
-        <a href="#contato" class="btn btn-primary" style="margin-top: 1rem;">Falar com a Eduarda</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES SECTION -->
-<section id="servicos" class="section">
-  <div class="container reveal">
-    <div class="services-header">
-      <span class="label">Meus Serviços</span>
-      <h2>Como posso te ajudar no seu processo?</h2>
-    </div>
-    
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <h3>Terapia Individual</h3>
-        <p>Sessões de 50 minutos focadas nas suas demandas específicas, padrões de comportamento, traumas ou transições de vida.</p>
-        <div class="service-tags">
-          <span class="tag">Autoconhecimento</span>
-          <span class="tag">Ansiedade</span>
-        </div>
-        <a href="#contato" class="service-link">Agendar Sessão <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-        </div>
-        <h3>Atendimento Online</h3>
-        <p>Faça terapia no conforto da sua casa. Atendimento seguro por videochamada para brasileiros em qualquer lugar do mundo.</p>
-        <div class="service-tags">
-          <span class="tag">Flexibilidade</span>
-          <span class="tag">Mundo todo</span>
-        </div>
-        <a href="#contato" class="service-link">Agendar Sessão <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        </div>
-        <h3>Presencial</h3>
-        <p>Para quem busca o contato olho no olho. Atendimento em consultório acolhedor e preparado para receber você com conforto.</p>
-        <div class="service-tags">
-          <span class="tag">Acolhimento</span>
-          <span class="tag">Segurança</span>
-        </div>
-        <a href="#contato" class="service-link">Consultar Local <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS SECTION -->
-<section class="section process-section">
-  <div class="container reveal">
-    <div class="process-header">
-      <span class="label label-light">O Caminho</span>
-      <h2>Como funciona a jornada terapêutica?</h2>
-    </div>
-    
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h4>Contato Inicial</h4>
-        <p>Você entra em contato via WhatsApp para tirar dúvidas de horários e valores.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h4>Acolhimento</h4>
-        <p>Nossa primeira sessão para eu entender a sua história, demandas e alinharmos expectativas.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h4>Processo</h4>
-        <p>Sessões semanais focadas em desenvolver estratégias, reflexões e novas habilidades.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h4>Evolução</h4>
-        <p>Com o tempo, você adquire autonomia emocional, caminhando para a alta terapêutica.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="depoimentos" class="section testimonials-section">
-  <div class="container reveal">
-    <div class="testimonials-header">
-      <span class="label">Experiências</span>
-      <h2>O que dizem os pacientes</h2>
-    </div>
-    
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"A Eduarda me ajudou a ver coisas que eu ignorava há anos. O ambiente é tão seguro que foi fácil me abrir logo no primeiro dia."</p>
-        <div class="testimonial-author">
-          <div class="author-dot">C</div> Paciente (Anônimo)
-        </div>
-      </div>
-      
-      <div class="testimonial-card">
-        <div class="stars" style="color: var(--terracotta-light);">★★★★★</div>
-        <p class="testimonial-text">"Tinha muito preconceito com terapia online, mas a conexão foi imediata. Minhas crises de ansiedade reduziram drasticamente."</p>
-        <div class="testimonial-author">
-          <div class="author-dot" style="background:var(--sage); color:var(--white);">M</div> Paciente (Anônimo)
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Profissional excelente! Pontual, empática e com intervenções que me fazem refletir a semana inteira. Recomendo de olhos fechados."</p>
-        <div class="testimonial-author">
-          <div class="author-dot">R</div> Paciente (Anônimo)
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ SECTION -->
-<section id="faq" class="section faq-section">
-  <div class="container reveal">
-    <div class="faq-layout">
-      <div class="faq-sidebar">
-        <span class="label">Tire suas dúvidas</span>
-        <h2>Perguntas Frequentes</h2>
-        <p>É normal ter dúvidas antes de iniciar a psicoterapia. Separei as mais comuns para te ajudar neste primeiro passo.</p>
-        <a href="#contato" class="btn btn-secondary">Ainda tenho dúvidas</a>
-      </div>
-      
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question">Qual a duração e frequência das sessões? <span class="faq-icon">+</span></button>
-          <div class="faq-answer">
-            As sessões têm duração de 50 minutos. A frequência recomendada inicialmente é semanal, para garantirmos a constância e o vínculo terapêutico adequado para o seu progresso.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Você atende por planos de saúde? <span class="faq-icon">+</span></button>
-          <div class="faq-answer">
-            Meus atendimentos são exclusivamente particulares. No entanto, emito recibo para que você possa solicitar o reembolso integral ou parcial junto ao seu plano de saúde, dependendo do seu contrato.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Como funciona a terapia online? <span class="faq-icon">+</span></button>
-          <div class="faq-answer">
-            A terapia online ocorre via chamada de vídeo segura (Google Meet ou similar). É necessário apenas que você esteja em um ambiente privativo, com boa conexão de internet e fones de ouvido para garantir o sigilo.
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question">Qual é a abordagem da psicologia que você utiliza? <span class="faq-icon">+</span></button>
-          <div class="faq-answer">
-            Trabalho com práticas baseadas em evidências. Minha escuta e intervenções são focadas em entender a raiz do seu comportamento para desenvolver estratégias práticas de mudança no seu dia a dia.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT SECTION -->
-<section id="contato" class="section contact-section">
-  <div class="container reveal">
-    <div class="contact-inner">
-      <div class="contact-info">
-        <span class="label">Contato</span>
-        <h2>Vamos conversar?</h2>
-        <p>Agende sua sessão ou tire dúvidas de forma rápida. Responderei o mais breve possível dentro do horário comercial.</p>
-        
-        <div class="contact-options">
-          <a href="#" class="contact-option">
-            <div class="contact-option-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 bg-bege/90 backdrop-blur-md border-b border-marrom/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="flower-2" class="text-rosa h-8 w-8"></i>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-semibold text-xl tracking-tight text-musgo leading-none">Eduarda Schmidt</span>
+                        <span class="text-[10px] uppercase tracking-widest text-marrom-light mt-1">Psicologia Infantil</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Início</a>
+                    <a href="#sinais" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Sinais</a>
+                    <a href="#metodologia" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Como Funciona</a>
+                    <a href="#sobre" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Sobre Mim</a>
+                    <a href="#contato" class="bg-musgo text-white px-5 py-2.5 rounded-full hover:bg-musgo-hover transition-colors font-medium text-sm shadow-md">Agendar Consulta</a>
+                </div>
+                <!-- Menu Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-marrom hover:text-musgo focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
             </div>
-            <div class="contact-option-text">
-              <strong>WhatsApp</strong>
-              <span>Retorno rápido (Clique aqui)</span>
-            </div>
-          </a>
-          
-          <a href="mailto:contato@eduardaschmidt.com.br" class="contact-option">
-            <div class="contact-option-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </div>
-            <div class="contact-option-text">
-              <strong>E-mail</strong>
-              <span>contato@eduardaschmidt.com.br</span>
-            </div>
-          </a>
         </div>
-      </div>
-      
-      <!-- Placeholder form as an aesthetic choice based on CSS -->
-      <div class="contact-form-card">
-        <h3>Me envie uma mensagem</h3>
-        <form onsubmit="event.preventDefault();">
-          <div style="margin-bottom: 1rem;">
-            <input type="text" placeholder="Seu nome completo" style="width:100%; padding: 0.8rem; border: 1px solid var(--ivory-dark); border-radius: var(--radius); font-family: var(--font-body); outline: none;">
-          </div>
-          <div style="margin-bottom: 1rem;">
-            <input type="email" placeholder="Seu melhor e-mail" style="width:100%; padding: 0.8rem; border: 1px solid var(--ivory-dark); border-radius: var(--radius); font-family: var(--font-body); outline: none;">
-          </div>
-          <div style="margin-bottom: 1.5rem;">
-            <textarea placeholder="Como posso te ajudar?" rows="4" style="width:100%; padding: 0.8rem; border: 1px solid var(--ivory-dark); border-radius: var(--radius); font-family: var(--font-body); outline: none; resize: vertical;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-bege border-b border-marrom/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#inicio" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Início</a>
+                <a href="#sinais" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Sinais</a>
+                <a href="#metodologia" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Como Funciona</a>
+                <a href="#sobre" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Sobre Mim</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">Eduarda <span>Schmidt</span></div>
-        <p>Psicologia Clínica focada no desenvolvimento emocional e bem-estar. Atendimentos presenciais e online.</p>
-      </div>
-      
-      <div class="footer-col">
-        <h5>Navegação</h5>
-        <ul>
-          <li><a href="#sobre">Sobre Mim</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
-          <li><a href="#faq">Dúvidas Frequentes</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h5>Contato</h5>
-        <ul>
-          <li><a href="#">WhatsApp</a></li>
-          <li><a href="#">E-mail</a></li>
-          <li><a href="#">Instagram</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h5>Endereço</h5>
-        <ul>
-          <li><a style="cursor: default;">Edifício Corporate Center<br>Sala 402 - Centro</a></li>
-          <li><a style="cursor: default;">Sua Cidade - Estado</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <div>&copy; 2026 Eduarda Schmidt Psicologia. Todos os direitos reservados.</div>
-      <div>CRP: 08/XXXXX</div>
-    </div>
-  </div>
-</footer>
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                    <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                        <span class="inline-block py-1 px-3 rounded-full bg-rosa/50 text-marrom text-sm font-semibold mb-6 tracking-wide">
+                            Atendimento Infantojuvenil em Londrina
+                        </span>
+                        <h1 class="text-4xl tracking-tight font-serif font-medium text-marrom sm:text-5xl md:text-6xl lg:leading-[1.1]">
+                            Entendendo o que o seu filho ainda não consegue <span class="text-musgo italic">dizer com palavras.</span>
+                        </h1>
+                        <p class="mt-6 text-lg text-marrom/80 sm:text-xl leading-relaxed">
+                            Um espaço seguro para acolher sentimentos, desenvolver a autoestima e construir caminhos mais leves para toda a família.
+                        </p>
+                        <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
+                            <a href="https://wa.me/5543996833933" target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-white bg-musgo hover:bg-musgo-hover transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                                <i data-lucide="message-circle" class="mr-2 h-5 w-5"></i>
+                                Agendar uma Primeira Conversa
+                            </a>
+                        </div>
+                        <p class="mt-4 text-sm text-marrom/60 flex items-center justify-center lg:justify-start">
+                            <i data-lucide="map-pin" class="mr-1 h-4 w-4"></i> Atendimentos presenciais em Londrina/PR
+                        </p>
+                    </div>
+                    <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center lg:justify-end">
+                        <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                            <!-- Fundo decorativo -->
+                            <div class="absolute -top-4 -right-4 w-72 h-72 bg-amarelo rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+                            <div class="absolute -bottom-8 -left-4 w-72 h-72 bg-rosa rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+                            
+                            <!-- Imagem Principal -->
+                            <img class="relative w-full h-[500px] object-cover organic-shape border-4 border-white shadow-xl" 
+                                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Psicóloga sorrindo de forma acolhedora"
+                                 onerror="this.src='https://via.placeholder.com/600x800/F8F6F0/3F5C4D?text=Imagem+da+Eduarda'">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-10 -left-6 bg-white p-4 rounded-2xl soft-shadow flex items-center gap-3">
+                                <div class="bg-amarelo/50 p-2 rounded-full">
+                                    <i data-lucide="star" class="h-6 w-6 text-marrom"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-marrom">Abordagem Lúdica</p>
+                                    <p class="text-xs text-marrom-light">Acolhimento sem julgamentos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- FLOATING WHATSAPP -->
-<a href="#" class="float-wa" aria-label="Falar no WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 1.84 6.366L0 24l5.807-1.796A11.95 11.95 0 0 0 12 24a12 12 0 0 0 12-12 12 12 0 0 0-12-12zM12 21.986a9.92 9.92 0 0 1-5.072-1.39l-.363-.215-3.771 1.164 1.008-3.666-.236-.375A9.88 9.88 0 0 1 2.056 12a9.95 9.95 0 0 1 9.944-9.944 9.95 9.95 0 0 1 9.944 9.944 9.95 9.95 0 0 1-9.944 9.986zm5.45-7.447c-.298-.149-1.766-.871-2.039-.972-.272-.102-.472-.149-.67.149-.199.298-.769.972-.942 1.171-.173.199-.347.224-.645.075-.298-.149-1.261-.465-2.404-1.485-.888-.794-1.488-1.776-1.662-2.074-.173-.298-.018-.46.131-.609.135-.135.298-.348.447-.521.149-.174.199-.298.298-.497.102-.199.052-.373-.023-.522-.075-.149-.67-1.616-.918-2.213-.242-.58-.487-.5-.67-.509-.173-.008-.372-.01-.571-.01-.199 0-.522.074-.795.372-.272.298-1.042 1.019-1.042 2.485s1.066 2.883 1.215 3.082c.149.199 2.1 3.208 5.088 4.498.712.308 1.267.492 1.699.63.714.227 1.364.194 1.872.118.571-.085 1.766-.721 2.014-1.418.248-.696.248-1.293.174-1.418-.075-.125-.272-.199-.571-.348z"/></svg>
-</a>
+        <!-- Pain Section (Sinais) -->
+        <section id="sinais" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-bold tracking-wide text-musgo uppercase mb-3">Quando procurar ajuda?</h2>
+                    <h3 class="text-3xl font-serif text-marrom sm:text-4xl mb-4">O comportamento é a linguagem de quem ainda está aprendendo a sentir.</h3>
+                    <p class="text-lg text-marrom/80">Nem sempre as crianças e adolescentes conseguem expressar angústias de forma clara. Muitas vezes, o pedido de ajuda vem disfarçado de:</p>
+                </div>
 
-<script>
-  const mainNav = document.getElementById('mainNav');
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  const faqItems = document.querySelectorAll('.faq-item');
-  const reveals = document.querySelectorAll('.reveal');
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-rosa/40 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="zap" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Irritabilidade Externa</h4>
+                        <p class="text-marrom/70 text-sm">Crises de raiva frequentes ou "birras" que parecem desproporcionais à situação.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-amarelo w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="cloud-rain" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Isolamento Repentino</h4>
+                        <p class="text-marrom/70 text-sm">Tristeza persistente, desinteresse por brincadeiras ou distanciamento da família.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-musgo/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="book-open" class="text-musgo h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Dificuldades Escolares</h4>
+                        <p class="text-marrom/70 text-sm">Queda no rendimento, recusa em ir à escola ou problemas de socialização com colegas.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-rosa/40 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="shield-alert" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Medos Intensos</h4>
+                        <p class="text-marrom/70 text-sm">Medos que paralisam a rotina, pesadelos frequentes ou ansiedade de separação extrema.</p>
+                    </div>
+                </div>
 
-  // Controle de scroll da barra de navegação e animações
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) {
-      mainNav.classList.add('scrolled');
-    } else {
-      mainNav.classList.remove('scrolled');
-    }
-    
-    // Revelar elementos ao rolar (Reveal animations)
-    reveals.forEach(reveal => {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveal.getBoundingClientRect().top;
-      const elementVisible = 100;
-      if (elementTop < windowHeight - elementVisible) {
-        reveal.classList.add('visible');
-      }
-    });
-  });
+                <div class="mt-12 text-center bg-amarelo/30 p-6 rounded-xl border border-amarelo max-w-4xl mx-auto">
+                    <p class="text-marrom italic font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="info" class="h-5 w-5 text-musgo"></i>
+                        Observação: Isso não é um diagnóstico, é um sinal de cuidado. Se esses sinais são frequentes, a psicoterapia pode ser o apoio que vocês precisam.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  // Menu Mobile Toggle
-  hamburgerBtn.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-    hamburgerBtn.classList.toggle('active');
-  });
+        <!-- Metodologia Section -->
+        <section class="py-20 bg-musgo text-bege overflow-hidden relative">
+            <!-- Padrão de fundo suave -->
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#F8F6F0 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-serif sm:text-4xl mb-6">Como transformamos desafios em autonomia?</h2>
+                        <p class="text-bege/80 text-lg mb-6 leading-relaxed">
+                            Através da <strong>Análise do Comportamento</strong>, não olhamos apenas para o sintoma, mas para o que o sustenta. O comportamento não surge do nada, ele é construído ao longo da história da criança.
+                        </p>
+                        <p class="text-bege/80 text-lg mb-8 leading-relaxed">
+                            O consultório é um ambiente preparado onde, através de <strong>recursos lúdicos</strong> (brincadeiras, desenhos, jogos), a criança se sente segura para ser quem é. Enquanto brincamos, construímos novos repertórios de enfrentamento e limites saudáveis.
+                        </p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Espaço de escuta validada e sem punições.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Foco na relação e na singularidade da criança.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Participação ativa da família (Orientação de Pais).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Imagem Decorativa Metodologia -->
+                    <div class="relative mt-10 lg:mt-0">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Brinquedos lúdicos no consultório" class="rounded-2xl shadow-lg organic-shape h-48 w-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Materiais de desenho e pintura" class="rounded-2xl shadow-lg organic-shape h-64 w-full object-cover mt-8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  function closeMobileNav() {
-    mobileNav.classList.remove('open');
-    hamburgerBtn.classList.remove('active');
-  }
+        <!-- Como Funciona Section -->
+        <section id="metodologia" class="py-24 bg-bege">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-serif text-marrom sm:text-4xl mb-4">O primeiro passo é mais simples do que parece.</h2>
+                    <p class="text-lg text-marrom/80">Entenda como funciona a jornada terapêutica desde o primeiro contato.</p>
+                </div>
 
-  // FAQ Accordion
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      // Fechar todos
-      faqItems.forEach(faq => faq.classList.remove('open'));
-      // Abrir o clicado se não estava aberto
-      if(!isOpen) {
-        item.classList.add('open');
-      }
-    });
-  });
+                <div class="relative">
+                    <!-- Linha conectora -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-marrom/10 -translate-y-1/2 z-0"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                        <!-- Passo 1 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative">
+                            <div class="w-16 h-16 bg-musgo text-white rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">1</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Acolhimento dos Pais</h4>
+                            <p class="text-marrom/70">Nossa primeira sessão é apenas com vocês. É o momento de ouvir a história, as queixas, os medos e o contexto da família de forma aprofundada.</p>
+                        </div>
 
-  // Disparar evento de scroll inicial para exibir as animações da primeira dobra
-  window.dispatchEvent(new Event('scroll'));
-</script>
+                        <!-- Passo 2 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative mt-12 md:mt-0">
+                            <div class="w-16 h-16 bg-amarelo text-marrom rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">2</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Vínculo e Avaliação</h4>
+                            <p class="text-marrom/70">Sessões iniciais com a criança ou adolescente. O foco total é criar um ambiente de extrema confiança para poder avaliar as necessidades reais.</p>
+                        </div>
+
+                        <!-- Passo 3 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative mt-12 md:mt-0">
+                            <div class="w-16 h-16 bg-rosa text-marrom rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">3</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Caminhando Juntos</h4>
+                            <p class="text-marrom/70">Início das sessões regulares de intervenção. Inclui encontros periódicos com os pais para orientações práticas (Devolutivas).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Mim Section -->
+        <section id="sobre" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-rosa/20 rounded-3xl overflow-hidden shadow-sm border border-rosa/30">
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-0 flex flex-col-reverse lg:flex-row">
+                        <div class="p-8 sm:p-12 lg:col-span-7 flex flex-col justify-center">
+                            <h2 class="text-3xl font-serif font-medium text-marrom sm:text-4xl mb-6">Prazer, Eduarda! <br><span class="text-2xl text-marrom-light italic">(Mas pode me chamar de Duda)</span></h2>
+                            <p class="text-marrom/80 text-lg mb-4 leading-relaxed">
+                                Sou psicóloga clínica, formada pela Universidade Estadual de Londrina (UEL). Minha trajetória sempre esteve voltada para a proteção e os direitos da infância e adolescência.
+                            </p>
+                            <p class="text-marrom/80 text-lg mb-6 leading-relaxed">
+                                Minha paixão é oferecer uma escuta guiada pela Análise do Comportamento, considerando sempre o contexto social e a história de vida. Cada criança é vista em sua singularidade.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">🎓 Formada pela UEL</span>
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">⚖️ Experiência na Defensoria Pública</span>
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">🧩 Amante de Quebra-cabeças e Cinema</span>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-marrom mb-1">Eduarda Godoy Schmidt</p>
+                                <p class="text-sm text-marrom/70">Psicóloga Infantojuvenil • CRP 08/47751</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 relative min-h-[400px]">
+                            <img class="absolute inset-0 w-full h-full object-cover object-top" src="https://images.unsplash.com/photo-1594824432258-857c28dddc6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Eduarda Schmidt Psicóloga" onerror="this.src='https://via.placeholder.com/600x800/F4E1E1/5A4634?text=Foto+Eduarda'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Magnet (Isca Digital) -->
+        <section class="py-16 bg-amarelo/40 border-t border-b border-amarelo">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <i data-lucide="gift" class="h-10 w-10 text-musgo mx-auto mb-4"></i>
+                <h3 class="text-2xl font-serif text-marrom mb-3">Material Gratuito para Pais</h3>
+                <p class="text-marrom/80 mb-6 max-w-2xl mx-auto">Baixe agora o <strong>"Checklist do Comportamento: 10 sinais de que a rotina do seu filho precisa de ajustes"</strong>. Um guia rápido para te ajudar a entender o que está acontecendo em casa.</p>
+                <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onsubmit="event.preventDefault(); alert('Em um site real, isso enviaria o PDF para o e-mail do usuário!');">
+                    <input type="email" placeholder="Seu melhor e-mail" required class="flex-grow px-4 py-3 rounded-xl border border-marrom/20 focus:outline-none focus:ring-2 focus:ring-musgo/50 bg-white">
+                    <button type="submit" class="bg-marrom text-bege px-6 py-3 rounded-xl font-medium hover:bg-marrom-light transition-colors whitespace-nowrap">Baixar PDF</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-musgo text-bege/80 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flower-2" class="text-rosa h-6 w-6"></i>
+                        <span class="font-serif font-semibold text-xl text-bege">Eduarda Schmidt</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        Construindo caminhos e auxiliando crianças e adolescentes a terem uma vida mais leve e autônoma através da psicoterapia baseada em evidências.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/psieduardaschmidt" target="_blank" class="w-10 h-10 rounded-full bg-bege/10 flex items-center justify-center hover:bg-bege/20 transition-colors">
+                            <i data-lucide="instagram" class="h-5 w-5 text-bege"></i>
+                        </a>
+                        <a href="mailto:eduarda.gschmidt@gmail.com" class="w-10 h-10 rounded-full bg-bege/10 flex items-center justify-center hover:bg-bege/20 transition-colors">
+                            <i data-lucide="mail" class="h-5 w-5 text-bege"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contatos -->
+                <div>
+                    <h4 class="font-bold text-bege mb-4 tracking-wider uppercase text-sm">Agendamentos</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i data-lucide="map-pin" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>Atendimentos Presenciais em<br>Londrina / PR</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="phone" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>(43) 9 9683-3933</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="award" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>Psicóloga Clínica • CRP 08/47751</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CTA Footer -->
+                <div>
+                    <h4 class="font-bold text-bege mb-4 tracking-wider uppercase text-sm">Dúvidas?</h4>
+                    <p class="text-sm mb-4">Sinta-se à vontade para me enviar uma mensagem. O primeiro passo é entender como posso ajudar sua família.</p>
+                    <a href="https://wa.me/5543996833933" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-bege/30 text-sm font-medium rounded-xl text-bege hover:bg-bege hover:text-musgo transition-all w-full">
+                        <i data-lucide="message-circle" class="mr-2 h-4 w-4"></i>
+                        Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-bege/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 Eduarda Godoy Schmidt. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0">Criado com foco em cuidado e acolhimento.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5543996833933?text=Olá,+vim+pelo+site+e+gostaria+de+saber+como+funciona+o+agendamento." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all z-50 flex items-center justify-center group"
+       aria-label="Falar no WhatsApp">
+        <i data-lucide="message-circle" class="h-6 w-6"></i>
+        <!-- Tooltip que aparece no hover (opcional, só p/ desktop) -->
+        <span class="absolute right-full mr-4 bg-white text-marrom text-sm px-3 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block">
+            Posso ajudar?
+        </span>
+    </a>
+
+    <!-- Script para ícones e interações básicas -->
+    <script>
+        // Inicializa ícones Lucide
+        lucide.createIcons();
+
+        // Menu Mobile Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
