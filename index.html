@@ -1,997 +1,437 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eduarda Schmit — Psicóloga Infanto-Juvenil</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #F5EFE0;
-    --warm-white: #FBF7EF;
-    --gold: #E8C66A;
-    --gold-deep: #C9A94A;
-    --terracotta: #C0714A;
-    --brown: #5C3D2E;
-    --brown-light: #8B6252;
-    --sage: #7A8C6E;
-    --sage-light: #A8B89A;
-    --text-dark: #2E1F14;
-    --text-mid: #5C4033;
-    --text-light: #9B7B6A;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--text-dark);
-    overflow-x: hidden;
-  }
-
-  /* Grain texture overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(251, 247, 239, 0.88);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(232, 198, 106, 0.25);
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--brown);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-mid);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--terracotta); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-left {
-    background: var(--cream);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 5rem 6rem 6rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--brown);
-    margin-bottom: 0.4rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
-
-  .hero-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--brown-light);
-    margin-bottom: 2.8rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.55s forwards;
-  }
-
-  .hero-desc {
-    font-size: 0.9rem;
-    line-height: 1.85;
-    color: var(--text-mid);
-    max-width: 420px;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.7s forwards;
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--brown);
-    color: var(--cream);
-    padding: 0.95rem 2.2rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.85s forwards;
-  }
-
-  .hero-cta:hover {
-    background: var(--terracotta);
-    transform: translateY(-2px);
-  }
-
-  .hero-cta svg { transition: transform 0.3s; }
-  .hero-cta:hover svg { transform: translateX(4px); }
-
-  .hero-right {
-    position: relative;
-    background: var(--gold);
-    overflow: hidden;
-  }
-
-  .hero-right::before {
-    content: 'SOBRE\AMIM';
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 12vw;
-    color: rgba(255,255,255,0.18);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: pre;
-    line-height: 0.9;
-    text-align: center;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-photo-wrap {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
-    z-index: 2;
-    opacity: 0;
-    animation: risePhoto 1.1s 0.6s forwards;
-  }
-
-  .hero-photo-wrap img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: top center;
-    filter: sepia(5%);
-  }
-
-  .hero-tag {
-    position: absolute;
-    bottom: 2.5rem;
-    right: -2rem;
-    z-index: 3;
-    background: var(--cream);
-    padding: 0.75rem 2rem 0.75rem 1.5rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--brown);
-    box-shadow: 4px 4px 20px rgba(0,0,0,0.1);
-    border-left: 3px solid var(--terracotta);
-    opacity: 0;
-    animation: fadeLeft 0.9s 1.1s forwards;
-  }
-
-  .hero-deco {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 8rem;
-    color: rgba(255,255,255,0.12);
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    pointer-events: none;
-  }
-
-  /* ─── STRIP ─── */
-  .strip {
-    background: var(--brown);
-    color: var(--gold);
-    padding: 1rem 4rem;
-    display: flex;
-    gap: 4rem;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .strip-inner {
-    display: flex;
-    gap: 4rem;
-    animation: marquee 18s linear infinite;
-  }
-
-  .strip-item {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .strip-item span { margin-right: 4rem; color: var(--terracotta); }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* ─── SECTIONS ─── */
-  .section {
-    padding: 8rem 6rem;
-    position: relative;
-  }
-
-  .section-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--terracotta);
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.4rem, 4vw, 3.8rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--brown);
-    margin-bottom: 2.5rem;
-  }
-
-  .section-title em { font-style: italic; color: var(--terracotta); }
-
-  /* ─── SOBRE ─── */
-  .sobre {
-    background: var(--warm-white);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .sobre-text p {
-    font-size: 0.95rem;
-    line-height: 2;
-    color: var(--text-mid);
-    margin-bottom: 1.4rem;
-  }
-
-  .sobre-text p:first-of-type::first-letter {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.8rem;
-    font-weight: 600;
-    float: left;
-    line-height: 0.8;
-    margin-right: 0.15em;
-    margin-top: 0.05em;
-    color: var(--gold-deep);
-  }
-
-  .sobre-visual {
-    position: relative;
-  }
-
-  .sobre-card {
-    background: var(--cream);
-    padding: 3rem;
-    border-left: 4px solid var(--gold);
-    position: relative;
-  }
-
-  .sobre-card::after {
-    content: '"';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 8rem;
-    color: var(--gold);
-    opacity: 0.3;
-    position: absolute;
-    top: -1rem;
-    right: 1.5rem;
-    line-height: 1;
-  }
-
-  .sobre-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.45rem;
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--brown);
-    margin-bottom: 1.2rem;
-  }
-
-  .sobre-quote-author {
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    color: var(--text-light);
-    text-transform: uppercase;
-  }
-
-  .sobre-floater {
-    position: absolute;
-    top: -1.5rem;
-    right: -1.5rem;
-    width: 5rem;
-    height: 5rem;
-    background: var(--terracotta);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-  }
-
-  /* ─── TRAJETÓRIA ─── */
-  .trajetoria {
-    background: var(--cream);
-  }
-
-  .traj-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3.5rem;
-  }
-
-  .traj-card {
-    background: var(--warm-white);
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
-    cursor: default;
-  }
-
-  .traj-card:hover { transform: translateY(-6px); }
-
-  .traj-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-
-  .traj-card:hover::before { transform: scaleX(1); }
-
-  .traj-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4.5rem;
-    font-weight: 300;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 1rem;
-    opacity: 0.6;
-  }
-
-  .traj-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
-  }
-
-  .traj-desc {
-    font-size: 0.88rem;
-    line-height: 1.8;
-    color: var(--text-mid);
-  }
-
-  .traj-tag {
-    display: inline-block;
-    margin-top: 1.2rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    border: 1px solid var(--terracotta);
-    padding: 0.3rem 0.75rem;
-  }
-
-  /* ─── POR QUE ─── */
-  .porque {
-    background: var(--brown);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .porque::before {
-    content: '?';
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 40vw;
-    font-weight: 700;
-    color: rgba(255,255,255,0.03);
-    position: absolute;
-    right: -5vw;
-    top: -5rem;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .porque .section-title { color: var(--gold); }
-  .porque .section-label { color: var(--sage-light); }
-  .porque .section-label::before { background: var(--sage-light); }
-
-  .porque-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-  }
-
-  .porque-lead {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-style: italic;
-    line-height: 1.5;
-    color: var(--gold);
-    border-left: 3px solid var(--terracotta);
-    padding-left: 2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .porque-text p {
-    font-size: 0.92rem;
-    line-height: 2;
-    color: rgba(245,239,224,0.75);
-    margin-bottom: 1.2rem;
-  }
-
-  .porque-pillars {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .pillar {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(232,198,106,0.2);
-    padding: 2rem 2rem 1.8rem;
-    position: relative;
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .pillar:hover {
-    border-color: rgba(232,198,106,0.5);
-    background: rgba(255,255,255,0.08);
-  }
-
-  .pillar-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.7rem;
-  }
-
-  .pillar-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
-  .pillar-text {
-    font-size: 0.85rem;
-    line-height: 1.75;
-    color: rgba(245,239,224,0.65);
-  }
-
-  /* ─── COMPROMISSO ─── */
-  .compromisso {
-    background: var(--warm-white);
-  }
-
-  .comprm-wrap {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .comprm-wrap .section-label {
-    justify-content: center;
-  }
-
-  .comprm-wrap .section-label::before { display: none; }
-
-  .comprm-wrap .section-title {
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-  }
-
-  .comprm-body {
-    font-size: 1.05rem;
-    line-height: 2;
-    color: var(--text-mid);
-    margin-bottom: 3rem;
-  }
-
-  .comprm-values {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 4rem;
-  }
-
-  .comprm-val {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--brown-light);
-  }
-
-  .comprm-val::before {
-    content: '';
-    display: block;
-    width: 6px;
-    height: 6px;
-    background: var(--gold-deep);
-    border-radius: 50%;
-  }
-
-  /* ─── CONTATO ─── */
-  .contato {
-    background: var(--gold);
-    padding: 7rem 6rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .contato-left .section-title { color: var(--brown); margin-bottom: 1.2rem; }
-  .contato-left p {
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: var(--brown);
-    opacity: 0.8;
-    margin-bottom: 2.5rem;
-  }
-
-  .contato-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--brown);
-    color: var(--cream);
-    padding: 1.1rem 2.5rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
-  }
-
-  .contato-btn:hover {
-    background: var(--terracotta);
-    transform: translateY(-2px);
-  }
-
-  .contato-right {
-    background: rgba(255,255,255,0.3);
-    padding: 3rem;
-    border: 1px solid rgba(255,255,255,0.5);
-  }
-
-  .contato-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-  }
-
-  .contato-info-item:last-child { margin-bottom: 0; }
-
-  .ci-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--brown);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1rem;
-  }
-
-  .ci-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--brown);
-    opacity: 0.6;
-    margin-bottom: 0.2rem;
-  }
-
-  .ci-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--brown);
-    font-weight: 600;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--text-dark);
-    color: rgba(245,239,224,0.4);
-    padding: 2rem 6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-  }
-
-  footer span { color: var(--gold); opacity: 0.7; }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes risePhoto {
-    from { opacity: 0; transform: translateX(-50%) translateY(40px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
-  }
-
-  @keyframes fadeLeft {
-    from { opacity: 0; transform: translateX(20px); right: -2rem; }
-    to { opacity: 1; transform: translateX(0); right: 2rem; }
-  }
-
-  /* Scroll-reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 7rem 2rem 3rem; }
-    .hero-right { height: 60vw; }
-    .section { padding: 5rem 2rem; }
-    .sobre { grid-template-columns: 1fr; gap: 3rem; }
-    .traj-grid { grid-template-columns: 1fr; }
-    .porque-layout { grid-template-columns: 1fr; gap: 3rem; }
-    .contato { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
-    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 2rem; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicóloga Infantil e Adolescente em Londrina | Eduarda Schmidt</title>
+    <meta name="description" content="Atendimento psicológico especializado em crianças e adolescentes em Londrina. Análise do comportamento, escuta acolhedora e orientação a pais.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN para arquivo único) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bege: '#F8F6F0',
+                        musgo: {
+                            DEFAULT: '#3F5C4D',
+                            hover: '#2D4438'
+                        },
+                        marrom: {
+                            DEFAULT: '#5A4634',
+                            light: '#8B735F'
+                        },
+                        rosa: '#F4E1E1',
+                        amarelo: '#FDF0D5'
+                    },
+                    fontFamily: {
+                        serif: ['Lora', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'organic': '60% 40% 30% 70% / 60% 30% 70% 40%',
+                        'organic-2': '40% 60% 70% 30% / 40% 50% 60% 50%'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos adicionais sutis */
+        body {
+            background-color: #F8F6F0;
+            color: #5A4634;
+        }
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 3s ease-in-out;
+        }
+        .organic-shape:hover {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 40px -10px rgba(90, 70, 52, 0.08);
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Eduarda Schmit — Psicóloga</a>
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#trajetoria">Trajetória</a></li>
-    <li><a href="#abordagem">Abordagem</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-</nav>
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 bg-bege/90 backdrop-blur-md border-b border-marrom/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="flower-2" class="text-rosa h-8 w-8"></i>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-semibold text-xl tracking-tight text-musgo leading-none">Eduarda Schmidt</span>
+                        <span class="text-[10px] uppercase tracking-widest text-marrom-light mt-1">Psicologia Infantil</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Início</a>
+                    <a href="#sinais" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Sinais</a>
+                    <a href="#metodologia" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Como Funciona</a>
+                    <a href="#sobre" class="text-marrom hover:text-musgo transition-colors font-medium text-sm">Sobre Mim</a>
+                    <a href="#contato" class="bg-musgo text-white px-5 py-2.5 rounded-full hover:bg-musgo-hover transition-colors font-medium text-sm shadow-md">Agendar Consulta</a>
+                </div>
+                <!-- Menu Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-marrom hover:text-musgo focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-bege border-b border-marrom/10 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#inicio" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Início</a>
+                <a href="#sinais" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Sinais</a>
+                <a href="#metodologia" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Como Funciona</a>
+                <a href="#sobre" class="text-marrom block px-3 py-2 rounded-md text-base font-medium">Sobre Mim</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">Psicóloga CRP — Londrina, PR</p>
-    <h1 class="hero-name">Eduarda<br><em>Schmit</em></h1>
-    <p class="hero-subtitle">Psicologia Infanto-Juvenil · UEL · CRP 08</p>
-    <p class="hero-desc">
-      Escuta qualificada para crianças e adolescentes, construída com cuidado, presença e compromisso com cada história que chega até mim.
-    </p>
-    <a href="#contato" class="hero-cta">
-      Agendar conversa
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                    <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                        <span class="inline-block py-1 px-3 rounded-full bg-rosa/50 text-marrom text-sm font-semibold mb-6 tracking-wide">
+                            Atendimento Infantojuvenil em Londrina
+                        </span>
+                        <h1 class="text-4xl tracking-tight font-serif font-medium text-marrom sm:text-5xl md:text-6xl lg:leading-[1.1]">
+                            Entendendo o que o seu filho ainda não consegue <span class="text-musgo italic">dizer com palavras.</span>
+                        </h1>
+                        <p class="mt-6 text-lg text-marrom/80 sm:text-xl leading-relaxed">
+                            Um espaço seguro para acolher sentimentos, desenvolver a autoestima e construir caminhos mais leves para toda a família.
+                        </p>
+                        <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
+                            <a href="https://wa.me/5543996833933" target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-white bg-musgo hover:bg-musgo-hover transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                                <i data-lucide="message-circle" class="mr-2 h-5 w-5"></i>
+                                Agendar uma Primeira Conversa
+                            </a>
+                        </div>
+                        <p class="mt-4 text-sm text-marrom/60 flex items-center justify-center lg:justify-start">
+                            <i data-lucide="map-pin" class="mr-1 h-4 w-4"></i> Atendimentos presenciais em Londrina/PR
+                        </p>
+                    </div>
+                    <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center lg:justify-end">
+                        <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                            <!-- Fundo decorativo -->
+                            <div class="absolute -top-4 -right-4 w-72 h-72 bg-amarelo rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+                            <div class="absolute -bottom-8 -left-4 w-72 h-72 bg-rosa rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+                            
+                            <!-- Imagem Principal -->
+                            <img class="relative w-full h-[500px] object-cover organic-shape border-4 border-white shadow-xl" 
+                                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Psicóloga sorrindo de forma acolhedora"
+                                 onerror="this.src='https://via.placeholder.com/600x800/F8F6F0/3F5C4D?text=Imagem+da+Eduarda'">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-10 -left-6 bg-white p-4 rounded-2xl soft-shadow flex items-center gap-3">
+                                <div class="bg-amarelo/50 p-2 rounded-full">
+                                    <i data-lucide="star" class="h-6 w-6 text-marrom"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-marrom">Abordagem Lúdica</p>
+                                    <p class="text-xs text-marrom-light">Acolhimento sem julgamentos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pain Section (Sinais) -->
+        <section id="sinais" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-sm font-bold tracking-wide text-musgo uppercase mb-3">Quando procurar ajuda?</h2>
+                    <h3 class="text-3xl font-serif text-marrom sm:text-4xl mb-4">O comportamento é a linguagem de quem ainda está aprendendo a sentir.</h3>
+                    <p class="text-lg text-marrom/80">Nem sempre as crianças e adolescentes conseguem expressar angústias de forma clara. Muitas vezes, o pedido de ajuda vem disfarçado de:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-rosa/40 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="zap" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Irritabilidade Externa</h4>
+                        <p class="text-marrom/70 text-sm">Crises de raiva frequentes ou "birras" que parecem desproporcionais à situação.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-amarelo w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="cloud-rain" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Isolamento Repentino</h4>
+                        <p class="text-marrom/70 text-sm">Tristeza persistente, desinteresse por brincadeiras ou distanciamento da família.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-musgo/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="book-open" class="text-musgo h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Dificuldades Escolares</h4>
+                        <p class="text-marrom/70 text-sm">Queda no rendimento, recusa em ir à escola ou problemas de socialização com colegas.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-bege p-8 rounded-2xl border border-marrom/5 hover:border-musgo/30 transition-all hover:-translate-y-1">
+                        <div class="bg-rosa/40 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                            <i data-lucide="shield-alert" class="text-marrom h-6 w-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-marrom mb-2">Medos Intensos</h4>
+                        <p class="text-marrom/70 text-sm">Medos que paralisam a rotina, pesadelos frequentes ou ansiedade de separação extrema.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center bg-amarelo/30 p-6 rounded-xl border border-amarelo max-w-4xl mx-auto">
+                    <p class="text-marrom italic font-medium flex items-center justify-center gap-2">
+                        <i data-lucide="info" class="h-5 w-5 text-musgo"></i>
+                        Observação: Isso não é um diagnóstico, é um sinal de cuidado. Se esses sinais são frequentes, a psicoterapia pode ser o apoio que vocês precisam.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metodologia Section -->
+        <section class="py-20 bg-musgo text-bege overflow-hidden relative">
+            <!-- Padrão de fundo suave -->
+            <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#F8F6F0 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-serif sm:text-4xl mb-6">Como transformamos desafios em autonomia?</h2>
+                        <p class="text-bege/80 text-lg mb-6 leading-relaxed">
+                            Através da <strong>Análise do Comportamento</strong>, não olhamos apenas para o sintoma, mas para o que o sustenta. O comportamento não surge do nada, ele é construído ao longo da história da criança.
+                        </p>
+                        <p class="text-bege/80 text-lg mb-8 leading-relaxed">
+                            O consultório é um ambiente preparado onde, através de <strong>recursos lúdicos</strong> (brincadeiras, desenhos, jogos), a criança se sente segura para ser quem é. Enquanto brincamos, construímos novos repertórios de enfrentamento e limites saudáveis.
+                        </p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Espaço de escuta validada e sem punições.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Foco na relação e na singularidade da criança.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="text-amarelo mr-3 mt-1 h-5 w-5 flex-shrink-0"></i>
+                                <span>Participação ativa da família (Orientação de Pais).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Imagem Decorativa Metodologia -->
+                    <div class="relative mt-10 lg:mt-0">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Brinquedos lúdicos no consultório" class="rounded-2xl shadow-lg organic-shape h-48 w-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Materiais de desenho e pintura" class="rounded-2xl shadow-lg organic-shape h-64 w-full object-cover mt-8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona Section -->
+        <section id="metodologia" class="py-24 bg-bege">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-serif text-marrom sm:text-4xl mb-4">O primeiro passo é mais simples do que parece.</h2>
+                    <p class="text-lg text-marrom/80">Entenda como funciona a jornada terapêutica desde o primeiro contato.</p>
+                </div>
+
+                <div class="relative">
+                    <!-- Linha conectora -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-marrom/10 -translate-y-1/2 z-0"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                        <!-- Passo 1 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative">
+                            <div class="w-16 h-16 bg-musgo text-white rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">1</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Acolhimento dos Pais</h4>
+                            <p class="text-marrom/70">Nossa primeira sessão é apenas com vocês. É o momento de ouvir a história, as queixas, os medos e o contexto da família de forma aprofundada.</p>
+                        </div>
+
+                        <!-- Passo 2 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative mt-12 md:mt-0">
+                            <div class="w-16 h-16 bg-amarelo text-marrom rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">2</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Vínculo e Avaliação</h4>
+                            <p class="text-marrom/70">Sessões iniciais com a criança ou adolescente. O foco total é criar um ambiente de extrema confiança para poder avaliar as necessidades reais.</p>
+                        </div>
+
+                        <!-- Passo 3 -->
+                        <div class="bg-white p-8 rounded-2xl soft-shadow text-center relative mt-12 md:mt-0">
+                            <div class="w-16 h-16 bg-rosa text-marrom rounded-full flex items-center justify-center text-2xl font-serif mx-auto mb-6 border-4 border-bege absolute -top-8 left-1/2 -translate-x-1/2 shadow-sm">3</div>
+                            <h4 class="text-xl font-bold text-marrom mb-3 mt-4">Caminhando Juntos</h4>
+                            <p class="text-marrom/70">Início das sessões regulares de intervenção. Inclui encontros periódicos com os pais para orientações práticas (Devolutivas).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Mim Section -->
+        <section id="sobre" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-rosa/20 rounded-3xl overflow-hidden shadow-sm border border-rosa/30">
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-0 flex flex-col-reverse lg:flex-row">
+                        <div class="p-8 sm:p-12 lg:col-span-7 flex flex-col justify-center">
+                            <h2 class="text-3xl font-serif font-medium text-marrom sm:text-4xl mb-6">Prazer, Eduarda! <br><span class="text-2xl text-marrom-light italic">(Mas pode me chamar de Duda)</span></h2>
+                            <p class="text-marrom/80 text-lg mb-4 leading-relaxed">
+                                Sou psicóloga clínica, formada pela Universidade Estadual de Londrina (UEL). Minha trajetória sempre esteve voltada para a proteção e os direitos da infância e adolescência.
+                            </p>
+                            <p class="text-marrom/80 text-lg mb-6 leading-relaxed">
+                                Minha paixão é oferecer uma escuta guiada pela Análise do Comportamento, considerando sempre o contexto social e a história de vida. Cada criança é vista em sua singularidade.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">🎓 Formada pela UEL</span>
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">⚖️ Experiência na Defensoria Pública</span>
+                                <span class="bg-white px-4 py-2 rounded-full text-sm text-marrom font-medium shadow-sm border border-marrom/5">🧩 Amante de Quebra-cabeças e Cinema</span>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-marrom mb-1">Eduarda Godoy Schmidt</p>
+                                <p class="text-sm text-marrom/70">Psicóloga Infantojuvenil • CRP 08/47751</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 relative min-h-[400px]">
+                            <img class="absolute inset-0 w-full h-full object-cover object-top" src="https://images.unsplash.com/photo-1594824432258-857c28dddc6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Eduarda Schmidt Psicóloga" onerror="this.src='https://via.placeholder.com/600x800/F4E1E1/5A4634?text=Foto+Eduarda'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Magnet (Isca Digital) -->
+        <section class="py-16 bg-amarelo/40 border-t border-b border-amarelo">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <i data-lucide="gift" class="h-10 w-10 text-musgo mx-auto mb-4"></i>
+                <h3 class="text-2xl font-serif text-marrom mb-3">Material Gratuito para Pais</h3>
+                <p class="text-marrom/80 mb-6 max-w-2xl mx-auto">Baixe agora o <strong>"Checklist do Comportamento: 10 sinais de que a rotina do seu filho precisa de ajustes"</strong>. Um guia rápido para te ajudar a entender o que está acontecendo em casa.</p>
+                <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onsubmit="event.preventDefault(); alert('Em um site real, isso enviaria o PDF para o e-mail do usuário!');">
+                    <input type="email" placeholder="Seu melhor e-mail" required class="flex-grow px-4 py-3 rounded-xl border border-marrom/20 focus:outline-none focus:ring-2 focus:ring-musgo/50 bg-white">
+                    <button type="submit" class="bg-marrom text-bege px-6 py-3 rounded-xl font-medium hover:bg-marrom-light transition-colors whitespace-nowrap">Baixar PDF</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-musgo text-bege/80 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="flower-2" class="text-rosa h-6 w-6"></i>
+                        <span class="font-serif font-semibold text-xl text-bege">Eduarda Schmidt</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">
+                        Construindo caminhos e auxiliando crianças e adolescentes a terem uma vida mais leve e autônoma através da psicoterapia baseada em evidências.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/psieduardaschmidt" target="_blank" class="w-10 h-10 rounded-full bg-bege/10 flex items-center justify-center hover:bg-bege/20 transition-colors">
+                            <i data-lucide="instagram" class="h-5 w-5 text-bege"></i>
+                        </a>
+                        <a href="mailto:eduarda.gschmidt@gmail.com" class="w-10 h-10 rounded-full bg-bege/10 flex items-center justify-center hover:bg-bege/20 transition-colors">
+                            <i data-lucide="mail" class="h-5 w-5 text-bege"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contatos -->
+                <div>
+                    <h4 class="font-bold text-bege mb-4 tracking-wider uppercase text-sm">Agendamentos</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-sm">
+                            <i data-lucide="map-pin" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>Atendimentos Presenciais em<br>Londrina / PR</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="phone" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>(43) 9 9683-3933</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="award" class="h-5 w-5 flex-shrink-0 text-rosa"></i>
+                            <span>Psicóloga Clínica • CRP 08/47751</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CTA Footer -->
+                <div>
+                    <h4 class="font-bold text-bege mb-4 tracking-wider uppercase text-sm">Dúvidas?</h4>
+                    <p class="text-sm mb-4">Sinta-se à vontade para me enviar uma mensagem. O primeiro passo é entender como posso ajudar sua família.</p>
+                    <a href="https://wa.me/5543996833933" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-bege/30 text-sm font-medium rounded-xl text-bege hover:bg-bege hover:text-musgo transition-all w-full">
+                        <i data-lucide="message-circle" class="mr-2 h-4 w-4"></i>
+                        Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-bege/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 Eduarda Godoy Schmidt. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0">Criado com foco em cuidado e acolhimento.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5543996833933?text=Olá,+vim+pelo+site+e+gostaria+de+saber+como+funciona+o+agendamento." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all z-50 flex items-center justify-center group"
+       aria-label="Falar no WhatsApp">
+        <i data-lucide="message-circle" class="h-6 w-6"></i>
+        <!-- Tooltip que aparece no hover (opcional, só p/ desktop) -->
+        <span class="absolute right-full mr-4 bg-white text-marrom text-sm px-3 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block">
+            Posso ajudar?
+        </span>
     </a>
-  </div>
-  <div class="hero-right">
-    <div class="hero-deco">🌷</div>
-    <div class="hero-tag">Prazer, Duda 🌷</div>
-  </div>
-</section>
 
-<!-- STRIP -->
-<div class="strip" aria-hidden="true">
-  <div class="strip-inner">
-    <span class="strip-item">Escuta Qualificada <span>✦</span></span>
-    <span class="strip-item">Psicologia Infantil <span>✦</span></span>
-    <span class="strip-item">Análise do Comportamento <span>✦</span></span>
-    <span class="strip-item">Direitos da Infância <span>✦</span></span>
-    <span class="strip-item">Adolescência <span>✦</span></span>
-    <span class="strip-item">Família & Vínculos <span>✦</span></span>
-    <span class="strip-item">Escuta Qualificada <span>✦</span></span>
-    <span class="strip-item">Psicologia Infantil <span>✦</span></span>
-    <span class="strip-item">Análise do Comportamento <span>✦</span></span>
-    <span class="strip-item">Direitos da Infância <span>✦</span></span>
-    <span class="strip-item">Adolescência <span>✦</span></span>
-    <span class="strip-item">Família & Vínculos <span>✦</span></span>
-  </div>
-</div>
+    <!-- Script para ícones e interações básicas -->
+    <script>
+        // Inicializa ícones Lucide
+        lucide.createIcons();
 
-<!-- SOBRE MIM -->
-<section id="sobre" class="section sobre">
-  <div class="sobre-text reveal">
-    <div class="section-label">Sobre mim</div>
-    <h2 class="section-title">Uma trajetória<br>construída com <em>afeto</em></h2>
-    <p>
-      Sou Psicóloga pela Universidade Estadual de Londrina, e minha trajetória na Psicologia foi, aos poucos, me mostrando caminhos e despertando em mim um olhar cada vez mais atento e curioso para as diferentes realidades, os encontros, as relações e as formas de compreender o comportamento.
-    </p>
-    <p>
-      Com o estágio na creche, com o carinho e a espontaneidade com que as crianças nos recebiam, era impossível não me afetar. A cada recurso lúdico, a cada brincadeira, a cada mudança comportamental — que, no fundo, sabíamos ser resultado do nosso trabalho — fui percebendo que esse seria o meu público.
-    </p>
-    <p>
-      Agora, sigo construindo esse caminho com cuidado, escuta e compromisso com cada história que vir até mim. 🌷⭐️
-    </p>
-  </div>
-  <div class="sobre-visual reveal reveal-delay-2">
-    <div class="sobre-card">
-      <div class="sobre-floater">🌿</div>
-      <p class="sobre-quote">
-        "Oferecer um espaço de escuta na infância e adolescência não é apenas um cuidado no presente — é também uma possibilidade de transformação no futuro."
-      </p>
-      <p class="sobre-quote-author">— Eduarda Schmit</p>
-    </div>
-  </div>
-</section>
+        // Menu Mobile Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-<!-- TRAJETÓRIA -->
-<section id="trajetoria" class="section trajetoria">
-  <div class="reveal">
-    <div class="section-label">Experiências</div>
-    <h2 class="section-title">Onde essa história<br><em>tomou forma</em></h2>
-  </div>
-  <div class="traj-grid">
-    <div class="traj-card reveal reveal-delay-1">
-      <div class="traj-number">01</div>
-      <h3 class="traj-title">Clínica Psicológica da UEL</h3>
-      <p class="traj-desc">Atuação direta no atendimento clínico com crianças e adolescentes, desenvolvendo escuta guiada pela Análise do Comportamento e considerando sempre o contexto social e história de vida de cada sujeito.</p>
-      <span class="traj-tag">Clínica · Londrina</span>
-    </div>
-    <div class="traj-card reveal reveal-delay-2">
-      <div class="traj-number">02</div>
-      <h3 class="traj-title">Centro de Educação Infantil</h3>
-      <p class="traj-desc">Estágio em creche que foi decisivo na escolha pelo público infanto-juvenil. O carinho e a espontaneidade das crianças, aliados às mudanças comportamentais observadas, confirmaram esse caminho.</p>
-      <span class="traj-tag">Educação Infantil</span>
-    </div>
-    <div class="traj-card reveal reveal-delay-3">
-      <div class="traj-number">03</div>
-      <h3 class="traj-title">Defensoria Pública — Vara da Infância</h3>
-      <p class="traj-desc">Estágio no Tribunal de Justiça, na Vara da Infância e Adolescência, aproximando a prática psicológica das discussões sobre proteção e direitos — e das histórias reais que atravessam tantas vidas.</p>
-      <span class="traj-tag">Direito · Proteção</span>
-    </div>
-    <div class="traj-card reveal reveal-delay-1">
-      <div class="traj-number">04</div>
-      <h3 class="traj-title">Projeto Neddij</h3>
-      <p class="traj-desc">Participação no Núcleo de Estudos e Defesa da Infância e Juventude, ampliando o olhar para políticas públicas, garantia de direitos e os atravessamentos sociais que marcam a infância.</p>
-      <span class="traj-tag">Extensão Universitária</span>
-    </div>
-    <div class="traj-card reveal reveal-delay-2">
-      <div class="traj-number">05</div>
-      <h3 class="traj-title">Workshop "Compreendendo o Comportamento"</h3>
-      <p class="traj-desc">Participação ativa em formações sobre Análise do Comportamento aplicada ao contexto infanto-juvenil, aprofundando os fundamentos teóricos que sustentam a prática clínica.</p>
-      <span class="traj-tag">Formação Continuada</span>
-    </div>
-    <div class="traj-card reveal reveal-delay-3">
-      <div class="traj-number">06</div>
-      <h3 class="traj-title">Formação — UEL 2021–2026</h3>
-      <p class="traj-desc">Graduação em Psicologia pela Universidade Estadual de Londrina, uma das principais universidades públicas do Paraná, com formação sólida em teoria, ética e prática psicológica.</p>
-      <span class="traj-tag">UEL · Londrina-PR</span>
-    </div>
-  </div>
-</section>
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-<!-- POR QUE PSICOLOGIA -->
-<section id="abordagem" class="section porque">
-  <div class="porque-layout">
-    <div class="reveal">
-      <div class="section-label">Abordagem</div>
-      <h2 class="section-title">Por que a<br>Psicologia<br><em>Infantil?</em></h2>
-      <p class="porque-lead">
-        "Crianças sentem. Mas nem sempre sabem como demonstrar. E na maioria das vezes, se expressam como conseguem."
-      </p>
-      <div class="porque-text">
-        <p>Comportamentos não surgem do nada — eles são construídos ao longo da história de cada indivíduo. Desde cedo, aprendemos como o mundo ao nosso redor nos responde diante de nossas ações: se somos ignorados, acolhidos, punidos, silenciados ou cuidados.</p>
-        <p>Nesse processo, são moldados nossos repertórios e construídos nossos padrões de comportamento. Por isso, a escuta na infância e adolescência tem um potencial transformador que vai muito além do presente.</p>
-      </div>
-    </div>
-    <div class="porque-pillars reveal reveal-delay-2">
-      <div class="pillar">
-        <div class="pillar-icon">🧩</div>
-        <h3 class="pillar-title">Escuta Singular</h3>
-        <p class="pillar-text">Cada criança é compreendida em sua singularidade, levando em conta sua história, seu contexto familiar e social, e seus próprios modos de se expressar.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🌱</div>
-        <h3 class="pillar-title">Análise do Comportamento</h3>
-        <p class="pillar-text">A escuta é guiada pela Análise do Comportamento, considerando sempre o contexto social e a história de vida — sem generalizar, sem rotular.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">💛</div>
-        <h3 class="pillar-title">Família como Parceira</h3>
-        <p class="pillar-text">O trabalho é construído junto com as crianças, adolescentes e suas famílias — porque novos caminhos se abrem quando há suporte, vínculo e confiança.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🔒</div>
-        <h3 class="pillar-title">Direitos & Proteção</h3>
-        <p class="pillar-text">Uma prática fundamentada na proteção da infância e nos direitos da criança e do adolescente, construída a partir de anos de contato com esse campo.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPROMISSO -->
-<section class="section compromisso">
-  <div class="comprm-wrap reveal">
-    <div class="section-label">Compromisso</div>
-    <h2 class="section-title">Com cuidado,<br>escuta e <em>presença</em></h2>
-    <p class="comprm-body">
-      Sigo construindo esse caminho com atenção às histórias que chegam até mim — acreditando que cada encontro terapêutico é uma oportunidade de construir, junto, novos caminhos possíveis.
-    </p>
-    <div class="comprm-values">
-      <span class="comprm-val">Escuta ativa</span>
-      <span class="comprm-val">Ética e sigilo</span>
-      <span class="comprm-val">Vínculo terapêutico</span>
-      <span class="comprm-val">Ludicidade</span>
-      <span class="comprm-val">Cuidado com a família</span>
-      <span class="comprm-val">Presença genuína</span>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato" class="contato">
-  <div class="contato-left reveal">
-    <div class="section-label" style="color:var(--brown);--terracotta:var(--brown)">Vamos conversar</div>
-    <h2 class="section-title" style="color:var(--brown)">Agende sua <em style="color:var(--terracotta)">consulta</em></h2>
-    <p>Se você está buscando acompanhamento psicológico para seu filho, filha ou adolescente, estou aqui para escutar e construir esse caminho junto com a sua família.</p>
-    <a href="https://wa.me/5543999999999" class="contato-btn" target="_blank">
-      💬 Falar no WhatsApp
-    </a>
-  </div>
-  <div class="contato-right reveal reveal-delay-2">
-    <div class="contato-info-item">
-      <div class="ci-icon">📍</div>
-      <div>
-        <p class="ci-label">Localização</p>
-        <p class="ci-value">Londrina, Paraná</p>
-      </div>
-    </div>
-    <div class="contato-info-item">
-      <div class="ci-icon">🎓</div>
-      <div>
-        <p class="ci-label">Formação</p>
-        <p class="ci-value">Psicóloga pela UEL (2021–2026)</p>
-      </div>
-    </div>
-    <div class="contato-info-item">
-      <div class="ci-icon">💼</div>
-      <div>
-        <p class="ci-label">Especialidade</p>
-        <p class="ci-value">Psicologia Infanto-Juvenil</p>
-      </div>
-    </div>
-    <div class="contato-info-item">
-      <div class="ci-icon">📲</div>
-      <div>
-        <p class="ci-label">Redes sociais</p>
-        <p class="ci-value">@eduarda.psicologa</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <span>Eduarda Schmit — Psicóloga</span>
-  <span>Londrina, PR · CRP 08 · 2026</span>
-</footer>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => observer.observe(r));
-</script>
+        // Fechar menu mobile ao clicar em um link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
